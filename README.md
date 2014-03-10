@@ -8,9 +8,9 @@
 * Download http://dl.bintray.com/apereo/Releases/cas-strap.zip
 * unzip cas-strap.zip
 * modify etc/cas/cas.properties
-** change first line to point to installation directory
-** add Duo Security configuration (if needed)
-** add Yubikey configuration (if needed)
+  * change first line to point to installation directory
+  * add Duo Security configuration (if needed)
+  * add Yubikey configuration (if needed)
 
 ## Running the server
 
