@@ -1,0 +1,20 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.gradle.api.plugins:gradle-tomcat-plugin:1.0"
+    }
+}
+
+if (!project.plugins.findPlugin(org.gradle.api.plugins.tomcat.TomcatPlugin)) {
+    project.apply(plugin: org.gradle.api.plugins.tomcat.TomcatPlugin)
+}
+
+task run(type: org.gradle.api.plugins.tomcat.TomcatRunWar) {
+   doFirst {
+       System.properties.put("ETC_ROOT", project.rootDir)
+   }
+    enableSSL = true
+}

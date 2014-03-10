@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>cas</context-root>
+</jboss-web>

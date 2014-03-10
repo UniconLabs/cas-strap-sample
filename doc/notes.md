@@ -1,0 +1,1 @@
+SAML metadata generator: [https://github.com/ipsi/spring-security-saml-metadata-generator](https://github.com/ipsi/spring-security-saml-metadata-generator)

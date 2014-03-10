@@ -1,0 +1,11 @@
+task createDist(type: Zip) {
+    def baseDir = { archiveName - ".zip" }
+    into(baseDir) {
+        from "."
+        exclude ".*"
+        exclude "build"
+        exclude ".*"
+        exclude "*.ipr", "*.iml"
+        exclude "*.log"
+    }
+}

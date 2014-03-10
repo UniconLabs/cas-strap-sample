@@ -1,0 +1,62 @@
+apply plugin: "base"
+apply from: "http://dl.bintray.com/scalding/generic/waroverlay.gradle"
+apply from: "gradle/aggregate.gradle"
+apply plugin: "groovy"
+
+repositories {
+    mavenCentral artifactUrls: ["http://developer.jasig.org/repo/content/groups/m2-legacy/", "http://central.maven.org/maven2/"]
+    maven { url "http://oss.sonatype.org/content/repositories/releases/" }
+    maven { url "https://build.shibboleth.net/nexus/content/groups/public" }
+    maven {
+        url "http://maven.springframework.org/milestone/"
+        artifactUrls "http://maven.springframework.org/snapshot/"
+    }
+}
+
+dependencies {
+    runtime("org.jasig.cas:cas-server-webapp:${project."cas.version"}@war") {
+        transitive = true
+        exclude group: "jboss", module: "javassist"
+    }
+
+    ["core", "logging-juli", "jasper"].each {
+        tomcat("org.apache.tomcat.embed:tomcat-embed-${it}:${project."tomcat.version"}") {
+            exclude group: "org.eclipse.jdt.core.compiler", module: "ecj"
+        }
+    }
+
+    compile("org.codehaus.groovy:groovy-all:${project."groovy.version"}")
+    compile("com.yubico:yubico-validation-client2:${project."yubico-validation.version"}")
+    compile("org.opensaml:opensaml:${project."opensaml.version"}")
+    compile("org.springframework.security.extensions:spring-security-saml2-core:${project."spring-security-saml.version"}")
+    ["web", "config"].each {
+        compile("org.springframework.security:spring-security-${it}:${project."spring-security.version"}") {
+            exclude group: "javax.servlet", module: "servlet-api"
+        }
+    }
+    ["api", "log4j12"].each {
+        compile("org.slf4j:slf4j-${it}:${project."slf4j.version"}")
+    }
+    compile("xml-apis:xml-apis:1.4.01")
+    compile("net.unicon.cas:cas-addons:${project."cas-addons.version"}") {
+        exclude group: "edu.internet2.middleware.grouper", module: "grouperClient"
+        exclude group: "com.sun.jersey", module: "jersey-client"
+        exclude group: "com.sun.jersey", module: "jersey-core"
+        exclude group: "com.sun.jersey", module: "jersey-server"
+        exclude group: "com.sun.jersey", module: "jersey-servlet"
+        exclude group: "com.sun.jersey.contribs", module: "jersey-spring"
+        exclude group: "javax.ws.rs", module: "jsr311-api"
+        exclude group: "org.slf4j", module: "slf4j-log4j12"
+        exclude group: "com.stormpath.sdk", module: "stormpath-sdk-api"
+        exclude group: "com.stormpath.sdk", module: "stormpath-sdk-httpclient"
+        exclude group: "org.springframework.data", module: "spring-data-mongodb"
+        exclude group: "org.springframework.security", module: "spring-security-cas"
+        exclude group: "com.yubico", module: "yubico-validation-client2"
+    }
+    providedCompile("javax.servlet:servlet-api:2.5")
+}
+
+war {
+    baseName "cas"
+    exclude "WEB-INF/classes/META-INF/persistence.xml"
+}
