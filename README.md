@@ -43,7 +43,8 @@ cas-strap.bat war
 ## The Person Service
 Included in the distribution is a person service to manage people and groups for discovery (see `src/main/groovy/org/jasig/cas/service`).
 
-###
+### SuperSimplePersonServiceImpl
+
 The `SuperSimplePersonServiceImpl` is the simplest implementation that will work with discovery, assuming that anyone
 can log in and that a group called `idp` should use an external IdP for authentication. To use it:
 
@@ -67,12 +68,19 @@ Change the bean with id `metadata`, modifying the list argument as needed, e.g.:
 4. For IdP authentication, enter `idp` into the `Organization Alias` field and hit `SELECT`; For internal authentication,
 enter anything into either field and hit `SELECT`.
 
-###
+### PersonServiceImpl
+
 The `PersonServiceImpl` is a more fleshed out test implementation. Instructions for usage are basically the same as the
 `SuperSimplePersonServiceImpl` with a few differences:
 * use `org.jasig.cas.service.SuperSimplePersonServiceImpl` for the `personService` bean in the `deployerConfigContext.xml`
 * logins are limited to users and groups defined in the service:
-|Organiation Alias|Info|
+
+|Organization Alias|Info|
 |-----------------|----|
-|idp|external Idp Authentication; must use the `jj` user|
+|idp|external IdP authentication; must use the `jj` user|
+|auth|internal authentication|
+
+|Username|Info|
+|----|----|
+|jj|external IdP authentication|
 |auth|internal authentication|
