@@ -62,11 +62,6 @@ class PersonServiceImpl implements PersonService {
     ] as List<Person>
 
     @Override
-    Group getGroup(Person p) {
-        return p.group
-    }
-
-    @Override
     Group findGroupByDiscoveryKey(String discoveryKey) {
         groups.find { it.discoveryKey == discoveryKey }
     }

@@ -10,8 +10,6 @@ import org.jasig.cas.domain.SamlGroup
  * Service for handling users and groups
  */
 public interface PersonService {
-    Group getGroup(Person person)
-
     /**
      * Get a group by an ID. The ID is used by the web flow so a fully hydrated group isn't stored in memory.
      *

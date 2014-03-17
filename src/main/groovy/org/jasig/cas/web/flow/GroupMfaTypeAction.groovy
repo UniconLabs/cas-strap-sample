@@ -17,7 +17,6 @@ class GroupMfaTypeAction {
     PersonService personService
 
     public String getType(Person person) {
-        Group group = personService.getGroup(person)
-        return group?.mfaType ?: NONE_TYPE
+        return person?.group?.mfaType ?: NONE_TYPE
     }
 }
