@@ -16,7 +16,7 @@ class SpringSecuritySamlCredentialsToPrincipalResolver extends AbstractPersonDir
 
     @Override
     protected String extractPrincipalId(Credentials credentials) {
-        return personService.findPersonBySpringSecuritySamlCredentials((SpringSecuritySamlCredentials) credentials).username
+        return personService.findPersonByCredentials((SpringSecuritySamlCredentials) credentials).username
     }
 
     @Override

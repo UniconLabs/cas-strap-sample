@@ -1,5 +1,6 @@
 package org.jasig.cas.service
 
+import org.jasig.cas.authentication.principal.Credentials
 import org.jasig.cas.authentication.saml.SpringSecuritySamlCredentials
 import org.jasig.cas.domain.ExternalPerson
 import org.jasig.cas.domain.Group
@@ -76,15 +77,18 @@ class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    Person findPersonByExternalIdAndGroup(String externalId, SamlGroup samlGroup) {
+    Person findPersonByExternalIdAndGroup(String externalId, Group group) {
         people.find {
-            it instanceof ExternalPerson && ((ExternalPerson) it).externalId == externalId && it.group == samlGroup
+            it instanceof ExternalPerson && ((ExternalPerson) it).externalId == externalId && it.group == group
         }
     }
 
     @Override
-    Person findPersonBySpringSecuritySamlCredentials(SpringSecuritySamlCredentials springSecuritySamlCredentials) {
-        return this.findPersonByExternalIdAndGroup(springSecuritySamlCredentials.samlPrincipalId, springSecuritySamlCredentials.samlGroup)
+    Person findPersonByCredentials(Credentials credentials) {
+        if (credentials instanceof SpringSecuritySamlCredentials) {
+            return this.findPersonByExternalIdAndGroup(credentials.samlPrincipalId, credentials.samlGroup)
+        }
+        return null
     }
 
     @Override

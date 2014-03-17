@@ -1,5 +1,6 @@
 package org.jasig.cas.service
 
+import org.jasig.cas.authentication.principal.Credentials
 import org.jasig.cas.authentication.saml.SpringSecuritySamlCredentials
 import org.jasig.cas.domain.Group
 import org.jasig.cas.domain.Person
@@ -15,7 +16,7 @@ public interface PersonService {
     Group findGroupByDiscoveryKey(String discoveryKey)
     Person findPersonByUsername(String username)
 
-    Person findPersonByExternalIdAndGroup(String externalId, SamlGroup samlGroup)
+    Person findPersonByExternalIdAndGroup(String externalId, Group group)
 
-    Person findPersonBySpringSecuritySamlCredentials(SpringSecuritySamlCredentials springSecuritySamlCredentials)
+    Person findPersonByCredentials(Credentials credentials)
 }
