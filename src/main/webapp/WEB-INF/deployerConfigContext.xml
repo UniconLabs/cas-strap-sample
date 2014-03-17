@@ -239,7 +239,7 @@
     </bean>
 
     <bean id="personService"
-          class="org.jasig.cas.service.PersonServiceImpl"/>
+          class="org.jasig.cas.service.SuperSimplePersonServiceImpl"/>
 
     <bean id="loginTypeDiscoveryAction"
           class="org.jasig.cas.web.flow.LoginTypeDiscoveryAction"
