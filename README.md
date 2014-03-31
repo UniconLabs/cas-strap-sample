@@ -5,7 +5,7 @@
 ## Getting started
 
 * Download and install an appropriate JDK 1.7 (http://www.oracle.com/technetwork/java/javase/downloads/index.html). Make sure you download the JDK and not the JRE.
-* Download http://dl.bintray.com/apereo/Releases/cas-strap.zip
+* Download http://dl.bintray.com/apereo/Releases/#cas-strap-sample.2014.03.31.1.zip
 * unzip cas-strap.zip
 * modify etc/cas/cas.properties
   * change first line to point to installation directory
